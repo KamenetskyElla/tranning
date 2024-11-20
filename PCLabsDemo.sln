@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdersDemo", "src\OrdersDemo\OrdersDemo.csproj", "{A6841756-30F8-47B7-8F4B-CD305D1D474C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdersDemo.Tests", "tests\OrdersDemo.Tests\OrdersDemo.Tests.csproj", "{E8341406-4BF4-4181-BFF4-E559D9762785}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1BDC3490-F6F6-4C50-8AB0-911ABC118B0F}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Readme.md = Readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6841756-30F8-47B7-8F4B-CD305D1D474C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6841756-30F8-47B7-8F4B-CD305D1D474C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6841756-30F8-47B7-8F4B-CD305D1D474C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6841756-30F8-47B7-8F4B-CD305D1D474C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8341406-4BF4-4181-BFF4-E559D9762785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8341406-4BF4-4181-BFF4-E559D9762785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8341406-4BF4-4181-BFF4-E559D9762785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8341406-4BF4-4181-BFF4-E559D9762785}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FD58E095-F326-46E9-9D6D-E3F666C17EEA}
+	EndGlobalSection
+EndGlobal

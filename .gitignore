@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+tests/OrdersDemo.Tests/obj/
+tests/OrdersDemo.Tests/bin/
+src/OrdersDemo/Logs/
