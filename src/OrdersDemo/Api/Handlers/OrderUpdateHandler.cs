@@ -1,26 +1,21 @@
 ﻿using Ardalis.GuardClauses;
 using AutoMapper;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using OrdersDemo.Api.Models;
 using OrdersDemo.Domain;
 using OrdersDemo.Infrastructure;
 
 namespace OrdersDemo.Api.Handlers;
+public record OrderUpdateRequest(int Id, OrderUpdateDto UpdateDto) : IRequest<OrderDto>;
 
-public class OrderUpdateHandler
+public class OrderUpdateHandler(OrderDbContext dbContext, IMapper mapper) : IRequestHandler<OrderUpdateRequest, OrderDto>
 {
-    private readonly OrderDbContext _dbContext;
-    private readonly IMapper _mapper;
-
-    public OrderUpdateHandler(OrderDbContext dbContext, IMapper mapper)
+    public async Task<OrderDto> Handle(OrderUpdateRequest request, CancellationToken cancellationToken)
     {
-        _dbContext = dbContext;
-        _mapper = mapper;
-    }
-
-    public async Task<OrderDto> HandleAsync(int id, OrderUpdateDto updateDto, CancellationToken cancellationToken)
-    {
-        var order = await _dbContext.Orders
+        var id = request.Id;
+        OrderUpdateDto updateDto = request.UpdateDto;
+        var order = await dbContext.Orders
             .Where(x => x.Id == id)
             .Include(x => x.Items)
             .FirstOrDefaultAsync(cancellationToken);
@@ -32,8 +27,8 @@ public class OrderUpdateHandler
 
         //_dbContext.Orders.Update(order);
 
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        await dbContext.SaveChangesAsync(cancellationToken);
 
-        return _mapper.Map<OrderDto>(order);
+        return mapper.Map<OrderDto>(order);
     }
 }

@@ -17,20 +17,25 @@ public class OrderController(IMediator mediator) : ControllerBase
         CancellationToken cancellationToken)
     {
         var result = await handler.HandleAsync(cancellationToken);
-
         return Ok(result);
     }
+
 
     [HttpGet("{id}")]
     [SwaggerOperation(Summary = "Get an order details.", Tags = new[] { "Order" })]
-    public async Task<ActionResult<OrderDto>> Get(int id,
-        [FromServices] OrderGetHandler handler,
-        CancellationToken cancellationToken)
-    {
-        var result = await handler.HandleAsync(id, cancellationToken);
+    public async Task<ActionResult<OrderDto>> OrderGet(int id, CancellationToken cancellationToken)
+        => Ok(await mediator.Send(new OrderGetRequest(id), cancellationToken));
 
-        return Ok(result);
-    }
+    //[HttpGet("{id}")]
+    //[SwaggerOperation(Summary = "Get an order details.", Tags = new[] { "Order" })]
+    //public async Task<ActionResult<OrderDto>> Get(int id,
+    //    [FromServices] OrderGetHandler handler,
+    //    CancellationToken cancellationToken)
+    //{
+    //    var result = await handler.HandleAsync(id, cancellationToken);
+
+    //    return Ok(result);
+    //}
 
     //[HttpPost("/orders")]
     //[SwaggerOperation(Summary = "Create an order.", Tags = new[] { "Order" })]
@@ -48,27 +53,38 @@ public class OrderController(IMediator mediator) : ControllerBase
     public async Task<ActionResult<OrderDto>> Create(OrderCreateDto createDto, CancellationToken cancellationToken)
         => Ok(await mediator.Send(new OrderCreateRequest(createDto), cancellationToken));
 
-    [HttpPut("/orders/{id}")]
-    [SwaggerOperation(Summary = "Update order.", Tags = new[] { "Order" })]
-    public async Task<ActionResult<OrderDto>> Update(int id, OrderUpdateDto updateDto,
-        [FromServices] OrderUpdateHandler handler,
-        CancellationToken cancellationToken)
-    {
-        var result = await handler.HandleAsync(id, updateDto, cancellationToken);
+    //[HttpPut("/orders/{id}")]
+    //[SwaggerOperation(Summary = "Update order.", Tags = new[] { "Order" })]
+    //public async Task<ActionResult<OrderDto>> Update(int id, OrderUpdateDto updateDto,
+    //    [FromServices] OrderUpdateHandler handler,
+    //    CancellationToken cancellationToken)
+    //{
+    //    var result = await handler.HandleAsync(id, updateDto, cancellationToken);
+    //    return Ok(result);
+    //}
 
-        return Ok(result);
-    }
+    [HttpPut("{id}")]
+    [SwaggerOperation(Summary = " Claim Notes Update", Tags = new[] { "Order" })]
+    public async Task<ActionResult<OrderDto>> ClaimNoteUpdate(int id, OrderUpdateDto updateDto, CancellationToken cancellationToken)
+       => Ok(await mediator.Send(new OrderUpdateRequest(id, updateDto), cancellationToken));
+
 
     [HttpDelete("{id}")]
     [SwaggerOperation(Summary = "Delete order.", Tags = new[] { "Order" })]
-    public async Task<ActionResult<OrderDto>> Delete(int id,
-        [FromServices] OrderDeleteHandler handler,
-        CancellationToken cancellationToken)
-    {
-        await handler.HandleAsync(id, cancellationToken);
+    public async Task<ActionResult> OrderDelete(int id, CancellationToken cancellationToken)
+        => Ok(await mediator.Send(new OrderDeleteRequest(id), cancellationToken));
 
-        return Ok();
-    }
+
+    //[HttpDelete("{id}")]
+    //[SwaggerOperation(Summary = "Delete order.", Tags = new[] { "Order" })]
+    //public async Task<ActionResult<OrderDto>> Delete(int id,
+    //    [FromServices] OrderDeleteHandler handler,
+    //    CancellationToken cancellationToken)
+    //{
+    //    await handler.HandleAsync(id, cancellationToken);
+
+    //    return Ok();
+    //}
 
     [HttpPost("{id}")]
     [SwaggerOperation(Summary = "Complete order.", Tags = new[] { "Order" })]

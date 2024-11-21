@@ -1,32 +1,26 @@
 ﻿using Ardalis.GuardClauses;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using OrdersDemo.Api.Models;
 using OrdersDemo.Infrastructure;
 
 namespace OrdersDemo.Api.Handlers;
-
-public class OrderGetHandler
+public record OrderGetRequest(int Id) : IRequest<OrderDto>;
+public class OrderGetHandler(OrderDbContext dbContext, IMapper mapper) : IRequestHandler<OrderGetRequest, OrderDto>
 {
-    private readonly OrderDbContext _dbContext;
-    private readonly IMapper _mapper;
 
-    public OrderGetHandler(OrderDbContext dbContext, IMapper mapper)
-    {
-        _dbContext = dbContext;
-        _mapper = mapper;
-    }
 
-    public async Task<OrderDto> HandleAsync(int id, CancellationToken cancellationToken)
+    public async Task<OrderDto> Handle(OrderGetRequest request, CancellationToken cancellationToken)
     {
-        var order = await _dbContext.Orders
+        int id = request.Id;
+        var order = await dbContext.Orders
             .Where(x => x.Id == id)
-            .ProjectTo<OrderDto>(_mapper.ConfigurationProvider)
+            .ProjectTo<OrderDto>(mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
 
         Guard.Against.NotFound(id, order);
-
         return order;
     }
 }

@@ -1,29 +1,28 @@
 ﻿using Ardalis.GuardClauses;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using OrdersDemo.Infrastructure;
 
 namespace OrdersDemo.Api.Handlers;
 
-public class OrderDeleteHandler
+public record OrderDeleteRequest(int Id) : IRequest<Unit>;
+
+public class OrderDeleteHandler(OrderDbContext dbContext) : IRequestHandler<OrderDeleteRequest, Unit>
 {
-    private readonly OrderDbContext _dbContext;
 
-    public OrderDeleteHandler(OrderDbContext dbContext)
+    public async Task<Unit> Handle(OrderDeleteRequest request, CancellationToken cancellationToken)
     {
-        _dbContext = dbContext;
-    }
-
-    public async Task HandleAsync(int id, CancellationToken cancellationToken)
-    {
-        var order = await _dbContext.Orders
+        var id = request.Id;
+        var order = await dbContext.Orders
             .Where(x => x.Id == id)
             .Include(x => x.Items)
             .FirstOrDefaultAsync(cancellationToken);
 
         Guard.Against.NotFound(id, order);
 
-        _dbContext.Orders.Remove(order);
+        dbContext.Orders.Remove(order);
 
-        await _dbContext.SaveChangesAsync(cancellationToken);
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return Unit.Value;
     }
 }
