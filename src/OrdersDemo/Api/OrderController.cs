@@ -6,10 +6,11 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace OrdersDemo.Api;
 
 [ApiController]
+[Route("orders")]
 public class OrderController(IMediator mediator) : ControllerBase
 {
 
-    [HttpGet("/orders")]
+    [HttpGet]
     [SwaggerOperation(Summary = "List all orders.", Tags = new[] { "Order" })]
     public async Task<ActionResult<List<OrderListDto>>> GetAll(
         [FromServices] OrderGetAllHandler handler,
@@ -20,7 +21,7 @@ public class OrderController(IMediator mediator) : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("/orders/{id}")]
+    [HttpGet("{id}")]
     [SwaggerOperation(Summary = "Get an order details.", Tags = new[] { "Order" })]
     public async Task<ActionResult<OrderDto>> Get(int id,
         [FromServices] OrderGetHandler handler,
@@ -42,7 +43,7 @@ public class OrderController(IMediator mediator) : ControllerBase
     //    return Ok(result);
     //}
 
-    [HttpPost("/orders")]
+    [HttpPost]
     [SwaggerOperation(Summary = "Create an order.", Tags = new[] { "Order" })]
     public async Task<ActionResult<OrderDto>> Create(OrderCreateDto createDto, CancellationToken cancellationToken)
         => Ok(await mediator.Send(new OrderCreateRequest(createDto), cancellationToken));
@@ -58,7 +59,7 @@ public class OrderController(IMediator mediator) : ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete("/orders/{id}")]
+    [HttpDelete("{id}")]
     [SwaggerOperation(Summary = "Delete order.", Tags = new[] { "Order" })]
     public async Task<ActionResult<OrderDto>> Delete(int id,
         [FromServices] OrderDeleteHandler handler,
@@ -69,7 +70,7 @@ public class OrderController(IMediator mediator) : ControllerBase
         return Ok();
     }
 
-    [HttpPost("/orders/{id}")]
+    [HttpPost("{id}")]
     [SwaggerOperation(Summary = "Complete order.", Tags = new[] { "Order" })]
     public async Task<ActionResult<OrderDto>> Complete(int id,
         [FromServices] OrderoldCompleteHandler handler,
@@ -80,7 +81,7 @@ public class OrderController(IMediator mediator) : ControllerBase
         return Ok(result);
     }
 
-    [HttpPost("/orders/{id}/items")]
+    [HttpPost("{id}/items")]
     [SwaggerOperation(Summary = "Add item to order.", Tags = new[] { "Order Item" })]
     public async Task<ActionResult<OrderDto>> AddItem(int id, OrderItemCreateDto createDto,
         [FromServices] OrderItemCreateHandler handler,
@@ -91,7 +92,7 @@ public class OrderController(IMediator mediator) : ControllerBase
         return Ok(result);
     }
 
-    [HttpDelete("/orders/{id}/items/{itemId}")]
+    [HttpDelete("{id}/items/{itemId}")]
     [SwaggerOperation(Summary = "Delete item from order.", Tags = new[] { "Order Item" })]
     public async Task<ActionResult> DeleteItem(int id, int itemId,
         [FromServices] OrderItemDeleteHandler handler,
