@@ -7,13 +7,13 @@ using OrdersDemo.Infrastructure;
 
 namespace OrdersDemo.Api.Handlers;
 
-public class OrderCompleteHandler
+public class OrderoldCompleteHandler
 {
     private readonly OrderDbContext _dbContext;
     private readonly IMapper _mapper;
     private readonly IDateTime _dateTime;
 
-    public OrderCompleteHandler(OrderDbContext dbContext, IMapper mapper, IDateTime dateTime)
+    public OrderoldCompleteHandler(OrderDbContext dbContext, IMapper mapper, IDateTime dateTime)
     {
         _dbContext = dbContext;
         _mapper = mapper;

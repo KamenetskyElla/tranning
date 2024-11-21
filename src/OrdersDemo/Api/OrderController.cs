@@ -6,10 +6,9 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace OrdersDemo.Api;
 
 [ApiController]
-public class OrderController : ControllerBase
+public class OrderController(IMediator mediator) : ControllerBase
 {
 
-    private readonly IMediator _mediator;
     [HttpGet("/orders")]
     [SwaggerOperation(Summary = "List all orders.", Tags = new[] { "Order" })]
     public async Task<ActionResult<List<OrderListDto>>> GetAll(
@@ -32,16 +31,21 @@ public class OrderController : ControllerBase
         return Ok(result);
     }
 
+    //[HttpPost("/orders")]
+    //[SwaggerOperation(Summary = "Create an order.", Tags = new[] { "Order" })]
+    //public async Task<ActionResult<OrderDto>> Create(OrderCreateDto createDto,
+    //    [FromServices] OrderCreateHandler handler,
+    //    CancellationToken cancellationToken)
+    //{
+    //    var result = await handler.HandleAsync(createDto, cancellationToken);
+
+    //    return Ok(result);
+    //}
+
     [HttpPost("/orders")]
     [SwaggerOperation(Summary = "Create an order.", Tags = new[] { "Order" })]
-    public async Task<ActionResult<OrderDto>> Create(OrderCreateDto createDto,
-        [FromServices] OrderCreateHandler handler,
-        CancellationToken cancellationToken)
-    {
-        var result = await handler.HandleAsync(createDto, cancellationToken);
-
-        return Ok(result);
-    }
+    public async Task<ActionResult<OrderDto>> Create(OrderCreateDto createDto, CancellationToken cancellationToken)
+        => Ok(await mediator.Send(new OrderCreateRequest(createDto), cancellationToken));
 
     [HttpPut("/orders/{id}")]
     [SwaggerOperation(Summary = "Update order.", Tags = new[] { "Order" })]
@@ -68,7 +72,7 @@ public class OrderController : ControllerBase
     [HttpPost("/orders/{id}")]
     [SwaggerOperation(Summary = "Complete order.", Tags = new[] { "Order" })]
     public async Task<ActionResult<OrderDto>> Complete(int id,
-        [FromServices] OrderCompleteHandler handler,
+        [FromServices] OrderoldCompleteHandler handler,
         CancellationToken cancellationToken)
     {
         var result = await handler.HandleAsync(id, cancellationToken);

@@ -7,6 +7,7 @@ using OrdersDemo.Domain.Contracts;
 using OrdersDemo.Domain.Services;
 using OrdersDemo.Infrastructure;
 using OrdersDemo.Infrastructure.Mail;
+using OrdersDemo.Mediator;
 using OrdersDemo.Setup;
 using Serilog;
 
@@ -38,7 +39,7 @@ builder.Services.AddSingleton<IPriceCalculator, CustomerPremiumCalculator>(s => 
 builder.Services.AddSingleton<IPriceCalculator, CustomerVipCalculator>(s => CustomerVipCalculator.Instance);
 builder.Services.AddSingleton<IPriceCalculator, CustomerPresidentCalculator>(s => CustomerPresidentCalculator.Instance);
 
-builder.Services.AddScoped<OrderCompleteHandler>();
+builder.Services.AddScoped<OrderoldCompleteHandler>();
 builder.Services.AddScoped<OrderCreateHandler>();
 builder.Services.AddScoped<OrderDeleteHandler>();
 builder.Services.AddScoped<OrderGetAllHandler>();
@@ -51,6 +52,9 @@ builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
+builder.Services.AddExtendedMediatR(typeof(Program));
+
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
