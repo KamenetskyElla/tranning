@@ -10,16 +10,20 @@ namespace OrdersDemo.Api;
 public class OrderController(IMediator mediator) : ControllerBase
 {
 
+    //[HttpGet]
+    //[SwaggerOperation(Summary = "List all orders.", Tags = new[] { "Order" })]
+    //public async Task<ActionResult<List<OrderListDto>>> GetAll(
+    //    [FromServices] OrderGetAllHandler handler,
+    //    CancellationToken cancellationToken)
+    //{
+    //    var result = await handler.HandleAsync(cancellationToken);
+    //    return Ok(result);
+    //}
+
     [HttpGet]
     [SwaggerOperation(Summary = "List all orders.", Tags = new[] { "Order" })]
-    public async Task<ActionResult<List<OrderListDto>>> GetAll(
-        [FromServices] OrderGetAllHandler handler,
-        CancellationToken cancellationToken)
-    {
-        var result = await handler.HandleAsync(cancellationToken);
-        return Ok(result);
-    }
-
+    public async Task<ActionResult<List<OrderListDto>>> ClaimNoteList(CancellationToken cancellationToken)
+        => Ok(await mediator.Send(new OrderListRequest(), cancellationToken));
 
     [HttpGet("{id}")]
     [SwaggerOperation(Summary = "Get an order details.", Tags = new[] { "Order" })]

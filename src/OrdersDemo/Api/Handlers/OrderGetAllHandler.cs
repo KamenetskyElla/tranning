@@ -1,26 +1,18 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using OrdersDemo.Api.Models;
 using OrdersDemo.Infrastructure;
 
 namespace OrdersDemo.Api.Handlers;
-
-public class OrderGetAllHandler
+public record OrderListRequest() : IRequest<List<OrderListDto>>;
+public class OrderGetAllHandler(OrderDbContext dbContext, IMapper mapper) : IRequestHandler<OrderListRequest, List<OrderListDto>>
 {
-    private readonly OrderDbContext _dbContext;
-    private readonly IMapper _mapper;
-
-    public OrderGetAllHandler(OrderDbContext dbContext, IMapper mapper)
+    public async Task<List<OrderListDto>> Handle(OrderListRequest request, CancellationToken cancellationToken)
     {
-        _dbContext = dbContext;
-        _mapper = mapper;
-    }
-
-    public async Task<List<OrderListDto>> HandleAsync(CancellationToken cancellationToken)
-    {
-        var result = await _dbContext.Orders
-            .ProjectTo<OrderListDto>(_mapper.ConfigurationProvider)
+        var result = await dbContext.Orders
+            .ProjectTo<OrderListDto>(mapper.ConfigurationProvider)
             .ToListAsync(cancellationToken);
 
         return result;
