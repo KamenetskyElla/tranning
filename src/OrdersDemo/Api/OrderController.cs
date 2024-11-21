@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using OrdersDemo.Api.Handlers;
 using OrdersDemo.Api.Models;
 using Swashbuckle.AspNetCore.Annotations;
-
 namespace OrdersDemo.Api;
 
 [ApiController]
 public class OrderController : ControllerBase
 {
+
+    private readonly IMediator _mediator;
     [HttpGet("/orders")]
     [SwaggerOperation(Summary = "List all orders.", Tags = new[] { "Order" })]
     public async Task<ActionResult<List<OrderListDto>>> GetAll(
