@@ -33,3 +33,6 @@
 tests/OrdersDemo.Tests/obj/
 tests/OrdersDemo.Tests/bin/
 src/OrdersDemo/Logs/
+.vs/
+src/OrdersDemo/bin/
+src/OrdersDemo/obj/
