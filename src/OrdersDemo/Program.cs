@@ -3,11 +3,13 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using OrdersDemo.Api.Handlers;
+using OrdersDemo.Domain;
 using OrdersDemo.Domain.Contracts;
 using OrdersDemo.Domain.Services;
 using OrdersDemo.Infrastructure;
 using OrdersDemo.Infrastructure.Mail;
 using OrdersDemo.Mediator;
+using OrdersDemo.Repository;
 using OrdersDemo.Setup;
 using Serilog;
 
@@ -54,7 +56,7 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.Services.AddExtendedMediatR(typeof(Program));
 
-
+builder.Services.AddScoped<IReadRepository<Order>, ReadRepository<Order>>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
