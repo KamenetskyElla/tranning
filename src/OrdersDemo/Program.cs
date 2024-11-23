@@ -41,7 +41,7 @@ builder.Services.AddSingleton<IPriceCalculator, CustomerPremiumCalculator>(s => 
 builder.Services.AddSingleton<IPriceCalculator, CustomerVipCalculator>(s => CustomerVipCalculator.Instance);
 builder.Services.AddSingleton<IPriceCalculator, CustomerPresidentCalculator>(s => CustomerPresidentCalculator.Instance);
 
-builder.Services.AddScoped<OrderoldCompleteHandler>();
+builder.Services.AddScoped<OrderCompleteHandler>();
 builder.Services.AddScoped<OrderCreateHandler>();
 builder.Services.AddScoped<OrderDeleteHandler>();
 builder.Services.AddScoped<OrderGetAllHandler>();
@@ -57,6 +57,7 @@ builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.Services.AddExtendedMediatR(typeof(Program));
 
 builder.Services.AddScoped<IReadRepository<Order>, ReadRepository<Order>>();
+builder.Services.AddScoped<IRepository<Order>, Repository<Order>>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

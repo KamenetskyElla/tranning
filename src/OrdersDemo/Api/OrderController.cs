@@ -70,7 +70,7 @@ public class OrderController(IMediator mediator) : ControllerBase
     [HttpPut("{id}")]
     [SwaggerOperation(Summary = " Claim Notes Update", Tags = new[] { "Order" })]
     public async Task<ActionResult<OrderDto>> ClaimNoteUpdate(int id, OrderUpdateDto updateDto, CancellationToken cancellationToken)
-       => Ok(await mediator.Send(new OrderUpdateRequest(id, updateDto), cancellationToken));
+       => Ok(await mediator.Send(new OrderUpdateOldRequest(id, updateDto), cancellationToken));
 
 
     [HttpDelete("{id}")]
@@ -93,7 +93,7 @@ public class OrderController(IMediator mediator) : ControllerBase
     [HttpPost("{id}")]
     [SwaggerOperation(Summary = "Complete order.", Tags = new[] { "Order" })]
     public async Task<ActionResult<OrderDto>> Complete(int id,
-        [FromServices] OrderoldCompleteHandler handler,
+        [FromServices] OrderCompleteHandler handler,
         CancellationToken cancellationToken)
     {
         var result = await handler.HandleAsync(id, cancellationToken);
