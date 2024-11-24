@@ -1,0 +1,108 @@
+//{
+//  /*  Configuration File Version  */
+//  "Version": 3,
+
+//  /*  Create an item in the dropdown list for each project in the solution?  */
+//  "ListAllProjects": false,
+
+//  "MultiProjectConfigurations": {
+//    "PCLabs Solution Dev": {
+//      "Projects": {
+//        "PCLabs.ApiGateway": {
+//          "ProfileName": "PCLabs.ApiGateway.Development"
+//        },
+//        "PCLabs.PaymentHub": {
+//          "ProfileName": "PCLabs.PaymentHub.Development"
+//        },
+//        "PCLabs.NotificationHub": {
+//          "ProfileName": "PCLabs.NotificationHub.Development"
+//        }
+//      },
+//      "SolutionConfiguration": "Debug"
+//    },
+//    "PCLabs Solution QA PC": {
+//      "Projects": {
+//        "PCLabs.CrmProxyApp": {
+//          "ProfileName": "PCLabs.CrmProxyApp.Development-QA-PC"
+//        },
+//        "PCLabs.ApiGateway": {
+//          "ProfileName": "PCLabs.ApiGateway.Development-QA-PC"
+//        },
+//        "PCLabs.PaymentHub": {
+//          "ProfileName": "PCLabs.PaymentHub.Development-QA-PC"
+//        },
+//        "PCLabs.NotificationHub": {
+//          "ProfileName": "PCLabs.NotificationHub.Development-QA-PC"
+//        }
+//      },
+//      "SolutionConfiguration": "Debug"
+//    },
+//    "PCLabs Solution QA DS": {
+//      "Projects": {
+//        "PCLabs.CrmProxyApp": {
+//          "ProfileName": "PCLabs.CrmProxyApp.Development-QA-DS"
+//        },
+//        "PCLabs.ApiGateway": {
+//          "ProfileName": "PCLabs.ApiGateway.Development-QA-DS"
+//        },
+//        "PCLabs.PaymentHub": {
+//          "ProfileName": "PCLabs.PaymentHub.Development-QA-DS"
+//        },
+//        "PCLabs.NotificationHub": {
+//          "ProfileName": "PCLabs.NotificationHub.Development-QA-DS"
+//        }
+//      },
+//      "SolutionConfiguration": "Debug"
+//    },
+//    "PCLabs Solution QA TCA": {
+//      "Projects": {
+//        "PCLabs.CrmProxyApp": {
+//          "ProfileName": "PCLabs.CrmProxyApp.Development-QA-TCA"
+//        },
+//        "PCLabs.ApiGateway": {
+//          "ProfileName": "PCLabs.ApiGateway.Development-QA-TCA"
+//        },
+//        "PCLabs.PaymentHub": {
+//          "ProfileName": "PCLabs.PaymentHub.Development-QA-TCA"
+//        },
+//        "PCLabs.NotificationHub": {
+//          "ProfileName": "PCLabs.NotificationHub.Development-QA-TCA"
+//        }
+//      },
+//      "SolutionConfiguration": "Debug"
+//    },
+//    "Claims with CrmProxyApp Dev": {
+//      "Projects": {
+//        "PCLabs.CrmProxyApp": {
+//          "ProfileName": "PCLabs.CrmProxyApp.Development"
+//        },
+//        "PCLabs.ClaimsApp": {
+//          "ProfileName": "PCLabs.ClaimsApp.Development"
+//        }
+//      },
+//      "SolutionConfiguration": "Debug"
+//    },
+//    "Claims with CrmProxyApp QA PC": {
+//      "Projects": {
+//        "PCLabs.CrmProxyApp": {
+//          "ProfileName": "PCLabs.CrmProxyApp.Development-QA-PC"
+//        },
+//        "PCLabs.ClaimsApp": {
+//          "ProfileName": "PCLabs.ClaimsApp.Development-QA-PC"
+//        }
+//      },
+//      "SolutionConfiguration": "Debug"
+//    },
+//    "Claims with CrmProxyApp QA DS": {
+//      "Projects": {
+//        "PCLabs.CrmProxyApp": {
+//          "ProfileName": "PCLabs.CrmProxyApp.Development-QA-DS"
+//        },
+//        "PCLabs.ClaimsApp": {
+//          "ProfileName": "PCLabs.ClaimsApp.Development-QA-DS"
+//        }
+//      },
+//      "SolutionConfiguration": "Debug"
+//    }
+//  }
+//}
