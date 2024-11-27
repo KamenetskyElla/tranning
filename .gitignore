@@ -36,3 +36,7 @@ src/OrdersDemo/Logs/
 .vs/
 src/OrdersDemo/bin/
 src/OrdersDemo/obj/
+OrderDemo.FunctionalTest/obj/
+OrderDemo.FunctionalTest/bin/
+FunctionalTest/bin/
+FunctionalTest/obj/

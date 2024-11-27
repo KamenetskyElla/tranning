@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "src\\OrdersDemo\\OrdersDemo.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "OrderDemo.FunctionalTest\\OrderDemo.FunctionalTest.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
